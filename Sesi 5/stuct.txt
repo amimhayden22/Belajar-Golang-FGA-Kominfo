@@ -1,0 +1,87 @@
+package main
+
+type Person struct {
+	Name    string
+	Address string
+	Age     uint
+}
+
+type Employee struct {
+	Common Person
+	Salary uint
+}
+
+/* Example with Common Output JSON
+{
+	"Salary": 3000000,
+	"Common": {
+		"Name": "Khamim",
+		"Address": "Jalan Grabag",
+		"Age": 23,
+	}
+
+}
+*/
+
+type Student struct {
+	Grade      string
+	SchoolName string
+	Person
+}
+
+/* Example without Common Output JSON
+{
+	"Grade": "2A",
+	"SchoolName": "SMK N 2 Magelang",
+	"Name": "Khamim",
+	"Address": "Jalan Grabag",
+	"Age": 23,
+
+}
+*/
+
+type BST struct {
+	Value int
+	Left  *BST
+	Right *BST
+}
+
+func main() {
+	var e1 Employee = Employee{
+		Common: Person{
+			Name: "Khamim",
+			Age:  23,
+		},
+		Salary: 3000000,
+	}
+
+	e1.Common.Address = "Grabag, Magelang"
+
+	// fmt.Printf("%+v\n", e1)
+
+	var s1 Student = Student{
+		Grade:      "2A",
+		SchoolName: "SMKN 2 Magelang",
+		Person: Person{
+			Name:    "Khamim",
+			Address: "Grabag",
+		},
+	}
+
+	// s1.Age = 23
+	s1.Person.Age = 23
+
+	// fmt.Printf("S1 => %+v\n", s1)
+
+	tempValue := struct {
+		RandomNumber int
+		RandomString string
+	}{
+		RandomNumber: 10,
+		RandomString: "aceasd",
+	}
+
+	tempValue.RandomNumber = 23
+
+	tempValue.RandomString = "lorem"
+}

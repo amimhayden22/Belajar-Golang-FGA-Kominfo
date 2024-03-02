@@ -1,0 +1,91 @@
+package main
+
+import "fmt"
+import "strings"
+
+func main() {
+	// Array yang dibatasi
+	var fruits [4]string = [4]string{
+		"Apel",
+		"Anggur",
+		"Jeruk",
+	}
+
+	fruits[3] = "Durian"
+
+	// fmt.Println("println =>", fruits)
+
+	// fmt.Printf("printf => %#v\n", fruits)
+
+	// fruits[0] = "Banana"
+
+	// fmt.Printf("printf => %#v\n", fruits)
+
+	// for i := 0; i < len(fruits); i++ {
+	// 	fmt.Printf("Index (%d), name (%s)\n", i, fruits[i])
+	// }
+
+	// for index, eachFuruit := range fruits {
+	// 	fmt.Printf("Index (%d), name (%s)\n", index, eachFuruit)
+	// }
+
+	// Array dinamis (tidak dibatasi)
+	var cars []string = []string{
+		"Honda",
+		"Toyota",
+		"BMW",
+		"Wuling",
+		"Hyundai",
+	}
+
+	var newCars []string = cars[0:4]
+
+	var raceCars []string = cars[1:3]
+	
+	fmt.Printf("newCars => %#v\n", newCars)
+	fmt.Printf("newCars =>len (%d), cap (%d)\n", len(newCars), cap(newCars))
+
+	fmt.Println(strings.Repeat("#", 60))
+
+	fmt.Printf("raceCars => %#v\n", raceCars)
+	fmt.Printf("raceCars =>len (%d), cap (%d)\n", len(raceCars), cap(raceCars))
+
+	// newCars = append(newCars, "Daihatsu")
+
+	// newCars[0] = "Wuling"
+
+	// fmt.Printf("Alamat memory dari index ke 0 cars => %v\n", &cars[0])
+	// fmt.Printf("Alamat memory dari index ke 0 newCars => %v\n", &newCars[0])
+
+	// fmt.Printf("cars =>len (%d), cap (%d), %#v\n", len(cars), cap(cars), cars)
+	// fmt.Printf("newCars =>len (%d), cap (%d), %#v\n", len(newCars), cap(newCars), newCars)
+	
+	// fmt.Printf("cars =>len (%d), cap (%d)\n", len(cars), cap(cars))
+	// cars = append(cars, "Wuling")
+
+	// fmt.Printf("len (%d), cap (%d)\n", len(cars), cap(cars))
+	// cars = append(cars, "Mitsubishi")
+
+	// fmt.Printf("len (%d), cap (%d)\n", len(cars), cap(cars))
+	// cars = append(cars, "Mercedes")
+
+	// fmt.Printf("len (%d), cap (%d)\n", len(cars), cap(cars))
+	// cars = append(cars, "Hyundai")
+
+	// fmt.Printf("len (%d), cap (%d)\n", len(cars), cap(cars))
+	// cars = append(cars, "Lamborgini")
+	// fmt.Println(cars == nil)
+
+	// fmt.Printf("Alamat memory dari index ke 0 cars => %v\n", &cars[0])
+	// fmt.Printf("Alamat memory dari index ke 0 newCars => %v\n", &newCars[0])
+
+	// fmt.Printf("Cars => %#v\n", cars)
+	// fmt.Printf("newCars => %#v\n", newCars)
+
+	// newCars[0] = "Range Rover"
+
+	// fmt.Println(strings.Repeat("#", 60))
+
+	// fmt.Printf("Cars => %#v\n", cars)
+	// fmt.Printf("newCars => %#v\n", newCars)
+}

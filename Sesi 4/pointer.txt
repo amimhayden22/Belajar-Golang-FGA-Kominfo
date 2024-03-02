@@ -1,0 +1,45 @@
+package main
+
+import "fmt"
+
+func ChangeValues(str *string, newStr string)  {
+	// fmt.Println("Pointer dari str => ", str)
+	*str = newStr
+}
+
+func main() {
+
+	var a string = "Hallo"
+
+	var b *string = &a
+
+	*b = "Apa Kabar?"
+
+	var num1 int = 10
+
+	var num2 *int = &num1
+
+	*num2 = 11
+
+	fmt.Println(num2)
+
+	var name string = "John"
+
+	// fmt.Println("Pointer dari name => ", &name)
+
+	ChangeValues(&name, "Ai")
+
+	fmt.Println(name)
+
+	// if b != nil {
+	// 	var c string = *b
+		
+	// 	_ = c
+	// 	fmt.Println(*b)
+	// }
+	
+	fmt.Println(a)
+
+	_, _ = a, b
+
+}

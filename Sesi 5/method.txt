@@ -1,0 +1,40 @@
+package main
+
+import "fmt"
+
+type DrinkVariant string
+
+func (dv DrinkVariant) MixAndMatch(condiment string) DrinkVariant {
+	fmt.Printf("dv => %s\n", dv)
+
+	// var mixedDrink string = fmt.Sprintf("%s o")
+
+	return ""
+	// return DrinkVariant(MixAndMatch())
+}
+
+type Person struct {
+	Name    string
+	Address string
+}
+
+
+func (p *Person) InsertName(newName string) {
+	// fmt.Printf("P => %+v\n", p)
+
+	p.Name = newName
+}
+
+func main() {
+	// var a DrinkVariant = "Chocolate Tea"
+
+	// a.MixAndMatch()
+
+	// var aMixed DrinkVariant = a.mixedDrink
+
+	var p1 Person = Person{Address: "Jakarta"}
+
+	p1.InsertName("Khamim")
+
+	fmt.Printf("P => %+v\n", p1)
+}

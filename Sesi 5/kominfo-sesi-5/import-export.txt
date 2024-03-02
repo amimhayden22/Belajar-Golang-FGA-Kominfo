@@ -1,0 +1,21 @@
+package main
+
+import (
+	"fmt"
+	"kominfo-sesi-5/helper"
+)
+
+func main()  {
+	
+	var c1 helper.Car = helper.Car{
+		Price: 150000000,
+		Brand: "Honda",
+	}
+
+	c1.SetMachineVersion("admin", "V3")
+
+	c1.MachineVersion("customer")
+
+	fmt.Printf("c1 => %+v\n", c1)
+
+}

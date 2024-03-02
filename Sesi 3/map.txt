@@ -1,0 +1,60 @@
+package main
+
+import (
+	"fmt"
+)
+
+func main() {
+	var person map[string]string = map[string]string{
+		"name": "John Doe",
+		"age": "24",
+		"address": "Jalan Sagan",
+	}
+
+	_ = person
+
+	var schools map[string][]string = map[string][]string{
+		"SMK Negeri 2 Magelang": []string{"Khamim", "Ayu"},
+		"SMK Negeri 3 Magelang": []string{"Bobby", "James"},
+	}
+
+	for key, value := range schools {
+		// fmt.Printf("key (%s), value (%s)\n", key, value)
+		for _, eachStudent := range value {
+			fmt.Printf("key (%s), value (%s)\n", key, eachStudent)
+		} 
+	}
+
+	var footbalPlayer map[string]map[string]string = map[string]map[string]string{
+		"Arhan": map[string]string{
+			"height": "162cm",
+			"total score": "120",
+		},
+	} 
+
+	_ = footbalPlayer
+
+	var scorePlayyer map[string]int = map[string]int{
+		"khamim": 120,
+		"gus": 120,
+	}
+
+	_ = scorePlayyer
+
+	// fmt.Printf("%#v\n", person)
+
+	// dengan key
+	// for key, value := range person {
+	// tanpa key
+	// for _, value := range person {
+	// 	fmt.Printf("value (%s)\n", value)
+	// 	// fmt.Printf("key (%s), value (%s)\n", key, value)
+	// }
+
+	// person["name"] = "John Doe"
+	// person["age"] = "25"
+
+	// fmt.Printf("%#v\n", person)
+
+	// fmt.Println(person == nil)
+}
