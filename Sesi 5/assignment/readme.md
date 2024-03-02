@@ -8,4 +8,4 @@
 ### Instalasi Program
 1. Silakan clone repo ini dengan cara ```git clone https://github.com/amimhayden22/Belajar-Golang-FGA-Kominfo.git```
 2. Masuk ke dalam folder Assignment 1 dengan cara ```cd Sesi\ 5/assignment/```
-3. 
+3. Kemudian jalankan perintah berikut ```go run main.go [id]```
