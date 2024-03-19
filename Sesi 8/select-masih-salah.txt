@@ -1,0 +1,108 @@
+package main
+
+import (
+	"errors"
+	"fmt"
+	"sync"
+)
+
+type Product struct{
+	Id		string
+	Title 	string
+	Price 	uint
+}
+
+var products []Product = []Product{
+	{
+		Id: "P-1",
+		Title: "Kemeja Hitam",
+		Price: 300000,
+	},
+	{
+		Id: "P-2",
+		Title: "",
+		Price: 300000,
+	},
+	{
+		Id: "P-3",
+		Title: "Celana Jeans",
+		Price: 300000,
+	},
+	{
+		Id: "P-4",
+		Title: "",
+		Price: 300000,
+	},
+	{
+		Id: "P-5",
+		Title: "Botol",
+		Price: 300000,
+	},
+}
+
+var database []Product = []Product{}
+
+func insertProduct(product Product, mutex *sync.Mutex, wg *sync.WaitGroup, errCh chan error)  {
+
+	if product.Title == "" {
+		if len(errCh) == 0 {
+			// fmt.Printf("%+v\n", product)
+			errCh <- errors.New(fmt.Sprintf("product with id %s has an empty title", product.Id))
+			// fmt.Printf("after sending errch => %+v\n", product)
+		}
+	}else{
+		mutex.Lock()
+		database = append(database, product)
+		mutex.Unlock()
+	}
+
+	wg.Done()
+
+}
+
+func main() {
+
+	errCh := make(chan error, 1)
+
+	mutex := sync.Mutex{}
+
+	wg := sync.WaitGroup{}
+
+	for _, p := range products {
+		wg.Add(1)
+		go insertProduct(p, &mutex, &wg, errCh)
+	}
+
+	wg.Wait()
+
+	select {
+		case errMsg := <- errCh:
+			fmt.Println(errMsg)
+			database = []Product{}
+		default:
+			fmt.Println("Sukses!");
+	}
+
+	// ch1 := make(chan string)
+	// ch2 := make(chan int)
+
+	// go func() {
+	// 	time.Sleep(4 * time.Second)
+	// 	ch1 <- "Data for CH1"
+	// }()
+
+	// go func() {
+	// 	time.Sleep(2 * time.Second)
+	// 	ch2 <- 20
+	// }()
+
+	// for i := 0; i < 2; i++ {
+	// 	select {
+	// 		case msg1 := <-ch1:
+	// 			fmt.Printf("Penerimaan data dari ch1: (%s)\n", msg1)
+	// 		case msg2 := <-ch2:
+	// 			fmt.Printf("Penerimaan data dari ch2: (%d)\n", msg2)	
+	// 	}
+	// }
+
+}

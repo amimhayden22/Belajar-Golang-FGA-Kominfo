@@ -1,0 +1,55 @@
+package main
+
+import "fmt"
+
+func randomValues(random ...interface{})  {
+	fmt.Println("Random => ", random)
+}
+
+func main() {
+
+	randomValues(10, "Hello World", []int{10, 20, 30})
+
+	var a interface{} = "Hello World"
+
+	a = 10
+
+	a = []string{"Banana", "Manggo"}
+
+	a = map[string]int{}
+
+	a = "John Doe"
+
+	text, ok := a.(string)
+
+	_, _ = text, ok
+
+	// if ok {
+	// 	fmt.Printf("text => (%s)\n", text)
+	// }else{
+	// 	fmt.Println("type assertion failed")
+	// }
+
+	var dynamicValues []interface{} = []interface{}{
+		"John Doe",
+		10,
+		true,
+		[]string{"Banana", "Manggo"},
+	}
+
+
+	for _, v := range dynamicValues {
+		switch t := v.(type) {
+		case int:
+			fmt.Printf("%d is an integer\n", t)
+		case string:
+			fmt.Printf("%s is an string value\n", t)
+		case bool:
+			fmt.Printf("%t is an bool value\n", t)
+		case []string:
+			fmt.Printf("%#v is an slice of string value\n", t)
+		default:
+			fmt.Printf("Uknown data type: %T\n", t)
+		}
+	}
+}

@@ -1,0 +1,64 @@
+package main
+
+import "fmt"
+
+type Student struct {
+	Id   string
+	Name string
+}
+
+var students []Student = []Student{}
+
+func (s Student) GetStudents() []Student {
+	return students
+}
+
+func (s Student) CreateStudent(payload Student) {
+	students = append(students, payload)
+}
+
+type StudentService interface {
+	GetStudents() []Student
+	CreateStudent(payload Student)
+}
+
+type MyString string
+
+func (ms MyString) GetStudents() []Student {
+
+	var result []Student = []Student{}
+
+	for _, s := range students {
+		student := Student{
+			Id:   s.Id,
+			Name: fmt.Sprintf("%s from MyString", s.Name),
+		}
+
+		result = append(result, student)
+	}
+
+	return result
+}
+
+func (ms MyString) CreateStudent() {}
+
+func main() {
+	// var str1 MyString = "Hello World"
+
+	// var s1 StudentService = str1
+
+	// var str2 string = "John Doe"
+
+	// var s2 StudentService = MyString(str2)
+
+	// var s3 StudentService = Student{}
+
+	// _, _, _ = s1, s2, s3
+
+	var myStr MyString
+
+	var student Student
+
+	var ss1 StudentService = myStr
+	var ss2 StudentService = student
+}

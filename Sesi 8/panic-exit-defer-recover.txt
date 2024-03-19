@@ -1,0 +1,28 @@
+package main
+
+import (
+	"fmt"
+	// "os"
+)
+
+func Random()  {
+	defer fmt.Println("defer from random func")
+	fmt.Println("Hello World!")
+}
+
+func main() {
+	// Random()
+	defer fmt.Println("Satu")
+	defer fmt.Println("Dua")
+	fmt.Println("Tiga")
+
+	// os.Exit(1)
+
+	// panic("error panic")
+}
+
+func panicRecovery()  {
+	if err := recover(); err != nil {
+		fmt.Println(err)
+	}
+}

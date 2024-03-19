@@ -1,0 +1,69 @@
+// Belum selesai
+package main
+
+import (
+	"fmt"
+	"reflect"
+)
+
+type Person struct {
+	Name    string `json:"name" required:"true"`
+	Address string `json:"address"`
+}
+
+func ValidateStruct(payload interface{}) bool {
+
+	metadata := reflect.TypeOf(payload)
+
+	if metadata.Kind() == reflect.Struct {
+		return false
+	}
+
+	value := reflect.ValueOf(payload)
+
+	for i := 0; i < metadata.NumField(); i++ {
+
+		if metadata.Field(i).Tag.Get("required") == "true" {
+			if metadata.Field(i).Type.Kind() == reflect.String{
+				fmt.Printf("field name: %s. Field value %v\n", metadata.Field(i).Name, value.Field(i).Interface())
+			}
+		}
+
+		fmt.Printf("Field ke %d. %+v\n", i+1, metadata.Field(i))
+
+		// fmt.Printf("required tag => %s", metadata.Field(i).Tag.Get("required"))
+	}
+
+	return true
+}
+
+func main() {
+	var p Person = Person{
+		Name:    "John",
+		Address: "Kemang",
+	}
+
+	_ = p
+	
+	var name string = "Andre"
+	
+	_ = name
+	
+	pMetaData := reflect.TypeOf(p)
+	
+	_ = pMetaData
+	
+	isValid := ValidateStruct(p)
+
+	_ = isValid
+
+	// fmt.Println("field amount of person => ", pMetaData.NumField())
+
+	// fmt.Printf("first field of person %+v\n", pMetaData.Field(0))
+
+	// fmt.Printf("second field of person %+v\n", pMetaData.Field(1))
+
+	// for i := 0; i < pMetaData.NumField(); i++ {
+	// 	fmt.Printf("Field ke %d. %+v\n", i+1, pMetaData.Field(i))
+	// }
+}
